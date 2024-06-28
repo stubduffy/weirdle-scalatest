@@ -1,3 +1,4 @@
+import org.openqa.selenium.firefox.{FirefoxDriver, FirefoxOptions}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 import org.scalatestplus.selenium.*
 import org.scalatest.*
@@ -8,7 +9,8 @@ class WeirdleTest extends flatspec.AnyFlatSpec with should.Matchers with WebBrow
 
   // need this if using chrome:
   // System.setProperty("webdriver.chrome.driver", "src/driver/chromedriver")
-  implicit val driver: WebDriver = Firefox.webDriver
+  val options: FirefoxOptions = new FirefoxOptions().addArguments("--headless")
+  implicit val driver: WebDriver = new FirefoxDriver(options)
 
   override def afterAll(): Unit = {
     driver.quit()
